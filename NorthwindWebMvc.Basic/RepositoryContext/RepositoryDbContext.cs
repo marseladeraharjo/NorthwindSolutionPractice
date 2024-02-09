@@ -8,5 +8,9 @@ namespace NorthwindWebMvc.Basic.RepositoryContext
         public RepositoryDbContext(DbContextOptions<RepositoryDbContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryDetail> CategoryDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
     }
 }

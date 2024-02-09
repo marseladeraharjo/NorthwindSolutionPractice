@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using NorthwindWebMvc.Basic.Mapping;
 using NorthwindWebMvc.Basic.Models;
+using NorthwindWebMvc.Basic.Models.Dto;
 using NorthwindWebMvc.Basic.Repository;
 using NorthwindWebMvc.Basic.RepositoryContext;
+using NorthwindWebMvc.Basic.Services;
 
 internal class Program
 {
@@ -12,8 +15,12 @@ internal class Program
 		// Add services to the container.
 		builder.Services.AddControllersWithViews();
 
-		// Register interface and interface implementations
-		builder.Services.AddScoped<IRepositoryBase<Category>, CategoryRepository>();
+		// Register AutoMapper
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+        // Register interface and interface implementations
+        builder.Services.AddScoped<IRepositoryBase<Category>, CategoryRepository>();
+		builder.Services.AddScoped<ICategoryService<CategoryDto>, CategoryService>();
 
 		// register dbcontext to services 
 		builder.Services.AddDbContext<RepositoryDbContext>(options =>		
